@@ -1,15 +1,30 @@
-const fs = require('fs');
-
-// Take JSON file, read as string, parse and convert to JSON
-// Not best practice! Best practice would be to read on startup and cache files
-const trips = JSON.parse(fs.readFileSync('./data/trips.json', 'utf8'));
+const request = require('request');
+const apiOptions = {
+    server: 'https://localhost:3000'
+}
 
 // To get /travel in the url
-const travel = (req, res) => {
-    pageTitle = process.env.npm_package_description + ' - Travel';
-    res.render('travel', {title: pageTitle, trips});
-};
+const travelList = (req, res) => {
+    const path = '/api/trips';
+    const requestOptions = {
+        url: `${apiOptions.server}${path}`,
+        method: 'GET',
+        json: {}
+    };
+
+    console.info('>>travelController.travelList calling ' + requestOptions.url);
+
+    request(
+        requestOptions,
+        (err, { statusCode }, body) => {
+            if (err) {
+                console.error(err);
+            }
+            renderTravelList(req, res, body);
+        }
+    )
+}
 
 module.exports = {
-    travel
-}
+    travelList,
+};
