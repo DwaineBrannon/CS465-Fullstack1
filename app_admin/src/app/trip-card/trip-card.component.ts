@@ -9,7 +9,7 @@ import { Trip } from '../models/trip';
 })
 export class TripCardComponent implements OnInit {
 
-  @Input('trip') trip: Trip;
+  @Input('trip') trip: any;
 
   constructor(
     private router: Router
@@ -18,7 +18,7 @@ export class TripCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  private editTrip(trip: Trip): void {
+public editTrip(trip: Trip): void {
     console.log('Inside TripListingComponent#editTrip');
     localStorage.removeItem("tripCode");
     localStorage.setItem("tripCode", trip.code);

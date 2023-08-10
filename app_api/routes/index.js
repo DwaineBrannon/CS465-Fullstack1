@@ -9,7 +9,7 @@ router
     .post(tripsController.tripsAddTrip);
     
 router
-    .route('/trips/tripCode')
+    .route('/trips/:tripCode')
     .get(tripsController.tripsFindCode)
     .put(tripsController.tripsUpdateTrip);
 
