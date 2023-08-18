@@ -11,7 +11,7 @@ const auth = jwt({
   });
 
 router
-    .route('login')
+    .route('/login')
     .post(authController.login);
 
 router 
